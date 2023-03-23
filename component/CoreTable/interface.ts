@@ -1,0 +1,55 @@
+import FIELD_LIST from "../CoreForm/interface";
+
+interface INFORMATION {
+    banglienket: string;
+    bangtrunggian: string;
+    children: any[];
+    columncode: string;
+    columndisplay: string;
+    columnkey: string;
+    columnkeytrunggian: string;
+    columnlinklayer: string;
+    columnworkflow: string;
+    fields: FIELD_LIST[];
+    fillterdefaultvalue: string;
+    fillterfield: string;
+    hasattachment: string;
+    initshow: string;
+    iscache: string;
+    iscollapse: string;
+    issinglelineedit: string;
+    istabtrunggian: string;
+    jobtypeids: any;
+    kvhccolumn: string;
+    layerindex: number;
+    layoutcolumn: number;
+    lineperpage: string;
+    maxLevel: number;
+    menuitems: any[];
+    onchange: string;
+    orderbyclause: string;
+    orderno: number;
+    parenttabid: number;
+    tabid: number;
+    tabledetail: string;
+    tableid: number;
+    tablelienket: number;
+    tablename: string;
+    tabletype: string;
+    tablevel: number;
+    tableworkflowId: number;
+    tabname: string;
+    tabs: any[];
+    truonglienketcha: string;
+    truonglienketcon: string;
+    truongtrunggiancha: string;
+    truongtrunggiancon: string;
+    urledit: string;
+    urleditdohoa: string;
+    urlview: string;
+    urlviewdohoa: string;
+    whereclause: string;
+    windowid: number;
+}
+
+export default INFORMATION;

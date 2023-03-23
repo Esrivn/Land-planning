@@ -1,0 +1,117 @@
+.input-class {
+    font-size: var(--font_size_medium) !important;
+
+    .block {
+        display: block;
+    }
+
+    .p-inputnumber {
+        width: 100%;
+        flex: 1 1;
+    }
+
+    .div-input-class {
+        width: 100%;
+        display: block;
+
+        label {
+            margin-bottom: 0;
+            padding-right: 0.5rem;
+            white-space: nowrap;
+        }
+    }
+
+    .div-input-labelleft-class {
+        display: flex;
+        align-items: center;
+
+        label {
+            margin-bottom: 0;
+            padding-right: 0.5rem;
+            white-space: nowrap;
+            font-weight: bold;
+        }
+    }
+
+    .p-inputtext,
+    .p-password,
+    .p-inputnumber-input {
+        width: 100%;
+      
+        font-size: var(--font_size_small);
+        display: flex;
+        align-items: center;
+        border-radius: 3px;
+        border: 1px solid var(--color_border);
+        color: var(--color_text);
+        font-family: var(--font_family);
+        flex: 1 1;
+    }
+    input {
+        height: 26px;
+    }
+
+    .p-inputtext:enabled:focus {
+        box-shadow: none;
+        border-color: var(--color_border);
+    }
+
+    .p-inputtext:enabled:hover {
+        outline: none;
+        border-color: var(--color_border);
+    }
+
+    .label-input-class {
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+        color: var(--color_text) !important;
+        font-family: var(--font_family) !important;
+        word-break: break-word;
+        white-space: normal;
+    }
+
+    .required-class {
+        color: var(--color_core_required);
+    }
+
+    .input-required-class {
+        border-color: var(--color_core_required) !important;
+    }
+}
+
+.div-input-class {
+    width: 100%;
+    display: block;
+
+    .label-input-class {
+        width: 100% !important;
+    }
+
+    .label-input-border-class {
+        margin-right: 7px;
+        width: 100% !important;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        color: var(--color_text) !important;
+        font-family: var(--font_family) !important;
+    }
+}
+
+.div-input-labelleft-class {
+    display: flex;
+    align-items: center;
+    .label-input-border-class {
+        margin-right: 7px;
+        font-weight: bold;
+        display: flex;
+        color: var(--color_text) !important;
+        font-family: var(--font_family) !important;
+    }
+    // label {
+    //     margin-bottom: 0;
+    //     padding-right: 0.5rem;
+    //     white-space: nowrap;
+    // }
+}

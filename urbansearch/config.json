@@ -1,0 +1,120 @@
+{
+  "titlePagePrint" : "HÒA BÌNH",
+  "urlPrintTool": "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task",
+  "distric" :  {
+    "url" : "https://services.arcgis.com/EaQ3hSM51DBnlwMq/ArcGIS/rest/services/T%e1%bb%89nh_H%c3%b2a_B%c3%acnh_Label/FeatureServer/1",
+    "fieldCode": "mahuyen",
+    "fieldDisplay": "diadanh"
+  },
+  "subDistric": { 
+    "url" :  "https://services.arcgis.com/EaQ3hSM51DBnlwMq/arcgis/rest/services/Địa_phận_cấp_xã/FeatureServer/0",
+    "fieldCode": "maxa",
+    "fieldDisplay": "diadanh"
+  },
+  "urlGeocodeServer" : "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/suggest",
+  "urlGeometryServer": "https://utility.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer",
+  "arrUrlMap": [
+    {
+    "year": 2019,
+    "idWebMap": "dd357917f2ad40da829c26695aa09d9b",
+    "cadastral": {
+      "name": "Thông tin thửa đất",
+      "url": "https://services.arcgis.com/EaQ3hSM51DBnlwMq/ArcGIS/rest/services/hoabinhquery/FeatureServer/0",
+      "field":["DienTich", "MucDichSuDungDat","SoHieuToBanDo","SoThuTuThuaDat"],
+      "areaField": "DienTich"
+    },  
+    "urban": {
+      "name": "Thông tin quy hoạch sử dụng đất",
+      "url": "https://services.arcgis.com/EaQ3hSM51DBnlwMq/ArcGIS/rest/services/hoabinhquery/FeatureServer/2",
+      "field":["mucDichSuDungQH", "namQuyHoach", "dienTich"],
+      "fieldsList": [
+        { 
+          "columnkey" : "OBJECTID",
+          "fieldname": "SoHieuToBanDo",
+          "alias": "Số tờ",
+          "fieldtype": "text",
+          "isdisplay": "Y",
+          "isdisplaygrid": "Y",
+          "isreadonly": "N",
+          "defaultValue": "1"
+        },
+        { 
+          "columnkey" : "OBJECTID",
+          "fieldname": "SoThuTuThuaDat",
+          "alias": "Số thửa",
+          "fieldtype": "text",
+          "isdisplay": "Y",
+          "isdisplaygrid": "Y",
+          "isreadonly": "N",
+          "defaultValue": "14"
+
+        }
+      ]
+    }, 
+    "project": {
+      "url": "https://services.arcgis.com/EaQ3hSM51DBnlwMq/ArcGIS/rest/services/hoabinhquery/FeatureServer/3",
+      "field": ["MaDuAn", "TenDuAn", "SoQD", "DienTich","TyLe","QuyMoDanSo", "TinhTrangPheDuyet", "DonViQuanLy", "ChuDauTu"],
+      "domain": {
+        "fields": ["TinhTrangPheDuyet", "DonViQuanLy"],
+        "domainName": [
+          {
+            "field" : "TinhTrangPheDuyet",
+            "codedValues": [
+              { "code": 0, "name": "Chưa phê duyệt" },
+              { "code": 1, "name": "Đã phê duyệt" },
+              {"code": 2, "name": "Chờ phê duyệt"}
+            ]
+          },
+          {
+            "field" : "DonViQuanLy",
+            "codedValues": [
+              {
+                "name": "Sở Tài Nguyên và Môi trường",
+                "code": 1
+               },
+               {
+                "name": "Sở Xây dựng",
+                "code": 2
+               },
+               {
+                "name": "Sở Công thương",
+                "code": 3
+               },
+               {
+                "name": "Sở Thông tin và Truyền thông",
+                "code": 4
+               },
+               {
+                "name": "Sở Nông nghiệp và phát triển Nông thôn",
+                "code": 5
+               },
+               {
+                "name": "Sở Giao thông vận tải",
+                "code": 6
+               },
+               {
+                "name": "Sở Lao động - Thương binh và Xã hội",
+                "code": 7
+               }
+            ]
+          }
+        ]
+      }
+    },
+    "quyHoachXayDung": {
+      "url": "",
+      "field": []
+    },
+    "scale": {
+      "5000": {
+        "isPacel": true,
+        "cadastral": {
+          "name": "Thông tin thửa đất",
+          "url": "https://services.arcgis.com/EaQ3hSM51DBnlwMq/ArcGIS/rest/services/hoabinhquery/FeatureServer/0",
+          "field":["DienTich", "MucDichSuDungDat", "MaPhuongXa", "MaQuanHuyen","SoTo","SoThua"]
+        }
+      }
+    }
+  }
+]}
+

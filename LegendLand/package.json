@@ -1,0 +1,16 @@
+{
+  "name": "appqhsdd",
+  "version": "1.0.0",
+  "description": "This sample demonstrates how to create a widget using a function component.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "clsx": "^1.1.1",
+    "primeicons": "^5.0.0",
+    "primereact": "^7.2.0"
+  }
+}

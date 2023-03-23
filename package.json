@@ -1,0 +1,36 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "cd project\r npm i",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "y",
+  "license": "ISC",
+  "dependencies": {
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/lab": "^4.0.0-alpha.61",
+    "axios": "^0.27.2",
+    "file-saver": "2.0.5",
+    "formik": "^2.2.9",
+    "google-maps-react": "^2.0.6",
+    "html5-qrcode": "^2.3.7",
+    "jquery": "^3.6.1",
+    "popper.js": "^1.16.1",
+    "primeflex": "^3.3.0",
+    "primeicons": "^6.0.1",
+    "primereact": "^8.7.0",
+    "react-paginate": "^8.1.4",
+    "react-places-autocomplete": "^7.3.0",
+    "react-qr-code": "^2.0.11",
+    "stream-js": "^0.5.1",
+    "styled-components": "^5.3.6",
+    "xlsx": "0.18.5",
+    "zipson": "^0.2.12"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://192.168.20.74/SonPA/projectexb.git"
+  }
+}

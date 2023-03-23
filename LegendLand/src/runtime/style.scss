@@ -1,0 +1,17 @@
+.div-legend {
+    font-family: 'roboto';
+    overflow: auto;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.div-panel {
+    display: flex;
+
+    .div-panel-mamau {
+        margin-bottom: 5px;
+        border-radius: 5px;
+        border: 1px solid #e1e1e1;
+        height: 20px;
+    }
+}

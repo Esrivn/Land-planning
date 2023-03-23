@@ -1,0 +1,31 @@
+ .p-checkbox-label {
+    margin-bottom: 0px !important;
+    font-family: var(--font_family);
+    font-size: var(--font_size_small) !important;
+    color: var(--color_text) !important;
+    margin-left: 5px;
+}
+ .p-checkbox .p-checkbox-box.p-highlight {
+    background: var(--color_core) !important;
+    border-color: var(--color_core) !important;
+
+}
+ .p-checkbox .p-checkbox-box {
+    border-color: var(--color_border) !important;
+}
+ .p-checkbox .p-checkbox-box .p-checkbox-icon {
+    color: var(--color_icon_core) !important;
+}
+ p-checkbox {
+    height: inherit;
+}
+
+.label-Class {
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    color: var(--color_text);
+    height: 30px;
+    padding-bottom: 8px;
+    font-size: var(--font_size_medium) !important;
+}

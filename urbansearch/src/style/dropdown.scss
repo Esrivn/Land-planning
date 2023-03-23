@@ -1,0 +1,68 @@
+Css Dropdown
+.p-dropdown-items {
+    padding: 0 !important;
+}
+
+.p-dropdown {
+    .p-inputtext {
+        border: 0px !important;
+        padding: 0.2rem 0.75rem !important;
+    }
+    width: 100% !important;
+    border-color: var(--mainSubColor) !important;
+    font-size: var(--fontSize) !important;
+
+    .p-dropdown-label {
+        font-size: var(--fontSize) !important;
+    }
+
+    .p-inputtext:enabled:focus,
+    .p-inputtext:enabled:hover {
+        outline: 0 !important;
+        box-shadow: none !important;
+        border-color: #188fff00 !important;
+    }
+}
+
+.p-dropdown:not(.p-disabled):hover,
+.p-dropdown:not(.p-disabled).p-focus {
+    outline: 0 !important;
+    box-shadow: 0 0 0 2px var(--boxShadowColor) !important;
+    border-color: #188fff33 !important;
+}
+
+.p-dropdown-panel {
+    z-index: 999999 !important;
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+    background-color: --hilightDropdownColor !important;
+    color: var(--textColor) !important;
+    font-weight: 600 !important;
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled):hover {
+    color: var(--textColor) !important;
+    background-color: --hilightDropdownColor !important;
+}
+
+.p-inputtext,
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+    // border: 1px solid #c9dff5;
+    padding: 0.2rem 0.75rem !important;
+}
+
+.p-button-info.p-button-outlined:not(button):not(a):not(.p-disabled):active {
+    color: var(--mainSubColor) !important;
+}
+
+button.p-button.p-component.p-button-outlined.p-button-info.p-button-icon-only {
+    color: var(--mainSubColor) !important;
+}
+
+.p-button.p-button-info:enabled:focus {}
+
+.txt-lable-dropdown {
+    font-size: 12px;
+    color: #000000a6;
+}

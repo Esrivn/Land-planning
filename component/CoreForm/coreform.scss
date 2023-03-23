@@ -1,0 +1,57 @@
+.core-form-control {
+    width: inherit;
+    height: inherit;
+    overflow: auto;
+
+    .p-fieldset {
+        width: 100%;
+
+        .p-fieldset-content {
+            padding: 0px;
+        }
+        .p-fieldset-legend {
+            padding: 0.5rem;
+            border: none;
+            background: #fff;
+            font-size: var(--fontSize) !important;
+
+            > a {
+                padding: 0.5rem;
+            }
+
+            &:hover {
+                background: #fff;
+            }
+        }
+    }
+
+    fieldset {
+        // unset vì bị style của jimu-theme ghi đè
+        min-width: unset;
+        padding-block-start: 0.35em;
+        padding-inline-start: 0.75em;
+        padding-inline-end: 0.75em;
+        padding-block-end: 0.625em;
+        margin-bottom: 0.75em;
+
+        legend {
+            width: unset;
+            max-width: unset;
+            margin-bottom: unset;
+            padding: unset;
+            font-size: unset;
+            line-height: unset;
+        }
+    }
+
+    .form-control-item {
+        margin: 3px 0px !important;
+    }
+
+    .form-control-footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60px;
+    }
+}

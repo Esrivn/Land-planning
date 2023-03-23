@@ -1,0 +1,26 @@
+$paginator-height: 60px;
+
+.core-table {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: 1rem;
+
+    .core-table-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: $paginator-height;
+        right: 0;
+    }
+
+    .core-paginator-container {
+        position: absolute;
+        height: $paginator-height;
+        left: 0;
+        bottom: 0px;
+        right: 0;
+    }
+}

@@ -1,0 +1,39 @@
+{
+  "--font_family": "Roboto",
+  "--font_size_small": "12px",
+  "--font_size_medium": "14px",
+  "--font_size_big": "16px",
+
+  "--color_bg": "#f7f7f7",
+  "--color_bg_panel": "#ffffff",
+  "--color_text": "#333333",
+
+  "--color_core": "#09A1FF",
+  "--color_core_header": "#E5E9F0",       
+  "--color_icon_core": "#ffffff",
+  "--color_core_placeholder": "#BDBDBD",
+  "--color_core_required": "#f44336",
+  "--color_core_tab_highlight": "#ffffff",
+  "--color_core_tab_highlight_text": "#333333",
+  "--color_border": "#bdbdbd",
+
+  "--color_bg_menu": "#061739",
+  "--color_text_menu": "#ffffff",
+  "--color_menu_selected": "#1b86ff",
+  "--color_bg_sub_menu": "#223865",
+  "--color_menu_text_highlight": "#ffffff",
+  "--color_menu_bg_hover": "#1e4083",
+
+  "--color_shortcut_bg": "#1A65A7",
+  "--color_shortcut_text": "#ffffff",
+  "--color_shortcut_bg_dropmenu": "#ffffff",
+  "--color_shortcut_selected": "#158FFF",
+
+  "--color_header_bg_left": "#02aaff",
+  "--color_header_bg_right": "#0a55c5",
+  "--color_header_text": "#ffffff",
+
+  "--color_window_bar_bg": "#d8dee9",
+  "--color_window_bar_text": "#333333",
+  "--color_window_bar_selected": "#5e81ac"
+}

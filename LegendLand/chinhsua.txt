@@ -1,0 +1,8 @@
+Sửa họp ngày 18/02/2022
+1. App Tra cứu thông tin:
+- Combobox danh sách bản đồ QHSDD (Button bật layer, trong suốt, danh sách đính kèm)
+- Combobox hiện trạng SDD (Button bật layer, trong suốt, danh sách đính kèm)
+- Xem thông tin quy hoạch
+	+ Tab KVHC
+	+ Thửa đất
+	+ Tọa độ XY

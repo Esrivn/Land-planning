@@ -1,0 +1,53 @@
+{
+    "searchResultView": "Result_Panel",
+    "arrangementStyle": "Style1",
+    "maxSuggestions": 6,
+    "recentSearchesMaxNumber": 6,
+    "resultMaxNumber": 6,
+    "services": [{
+        "id:": 1,
+        "type": "MapServer",
+        "url": "https://gisun.esrivn.net/server/rest/services/Indoor/IndoorSample/MapServer"
+    }, {
+        "id:": 2,
+        "type": "FeatureServer",
+        "url": "https://gisun.esrivn.net/server/rest/services/Indoor/IndoorSample/FeatureServer"
+    }],
+    "windowTables": [{
+            "id": 4,
+            "name": "People"
+        },
+        {
+            "id": 5,
+            "name": "Events"
+        },
+        {
+            "id": 6,
+            "name": "Places + Things"
+        },
+        {
+            "id": 7,
+            "name": "Retail + Services"
+        },
+        {
+            "id": 8,
+            "name": "Safety + Security"
+        },
+        {
+            "id": 9,
+            "name": "Details"
+        },
+        {
+            "id": 10,
+            "name": "Units"
+        },
+        {
+            "id": 11,
+            "name": "Levels"
+        },
+        {
+            "id": 12,
+            "name": "Facilities"
+        }
+    ]
+}

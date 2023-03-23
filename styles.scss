@@ -1,0 +1,49 @@
+@import url("primereact/resources/themes/lara-light-indigo/theme.css"); //theme
+@import url("primereact/resources/primereact.min.css"); //core css
+@import url("primeicons/primeicons.css"); //icons
+
+@font-face {
+    font-family: "Roboto";
+    src: url("./fonts/Roboto-Medium.ttf") format("truetype");
+}
+
+.field.grid .col-fixed,
+.formgrid.grid .col-fixed,
+.field.grid .col,
+.formgrid.grid .col,
+.field.grid .col-1,
+.formgrid.grid .col-1,
+.field.grid .col-2,
+.formgrid.grid .col-2,
+.field.grid .col-3,
+.formgrid.grid .col-3,
+.field.grid .col-4,
+.formgrid.grid .col-4,
+.field.grid .col-5,
+.formgrid.grid .col-5,
+.field.grid .col-6,
+.formgrid.grid .col-6,
+.field.grid .col-7,
+.formgrid.grid .col-7,
+.field.grid .col-8,
+.formgrid.grid .col-8,
+.field.grid .col-9,
+.formgrid.grid .col-9,
+.field.grid .col-10,
+.formgrid.grid .col-10,
+.field.grid .col-11,
+.formgrid.grid .col-11,
+.field.grid .col-12,
+.formgrid.grid .col-12 {
+    margin: 0px;
+}
+
+.formgrid.grid.col-12 {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+}

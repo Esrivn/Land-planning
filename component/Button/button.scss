@@ -1,0 +1,53 @@
+.p-button:enabled:hover {
+    background: var(--color_core);
+    color: var(--color_icon_core);
+}
+
+.btn-reset-class {
+    border: 1px solid var(--color_core) !important;
+    height: 36px;
+    min-width: 100px;
+    background: var(--color_icon_core) !important;
+    color: var(--color_core) !important;
+    border-radius: 10px;
+
+    &:hover {
+        background: var(--color_icon_core) !important;
+        border-color: var(--color_core) !important;
+        color: var(--color_core) !important;
+    }
+}
+
+.p-button-raised {
+    height: 36px;
+}
+
+.btn-save-class {
+    // border: 1px solid #02bdf8;
+    height: 36px;
+    min-width: 100px;
+    background: linear-gradient(90deg, var(--color_core) -3.54%, var(--color_core) 120.87%);
+    border: 1px solid var(--color_core);
+    color: var(--color_icon_core);
+    border-radius: 10px;
+    // &:hover {
+    //     background: linear-gradient(90deg, var(--color_core) -3.54%, var(--color_core) 120.87%) !important;
+    //     border-color: transparent !important;
+    //     color: var(--color_icon_core) !important;
+    // }
+}
+
+.btn-cancel-class {
+    border: 1px solid var(--color_core) !important;
+    height: 36px;
+    min-width: 100px;
+    background: var(--color_icon_core) !important;
+    color: var(--color_core) !important;
+    border-radius: 10px;
+
+    &:hover {
+        background: var(--color_icon_core) !important;
+        border-color: var(--color_core) !important;
+        color: var(--color_core) !important;
+    }
+}

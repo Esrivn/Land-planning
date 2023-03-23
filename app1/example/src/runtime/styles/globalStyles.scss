@@ -1,0 +1,27 @@
+$form-control-header-height: 115px;
+$form-control-footer-height: 60px;
+$form-height: 100%;
+
+.widget-example-demo {
+    background-color: #ffffff;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+
+    .widget-core-form {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 100% - $form-height;
+        overflow: auto;
+    }
+
+    .widget-core-table {
+        position: absolute;
+        top: $form-height;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
