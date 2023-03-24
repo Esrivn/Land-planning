@@ -20,8 +20,8 @@
     "cadastral": {
       "name": "Thông tin thửa đất",
       "url": "https://services.arcgis.com/EaQ3hSM51DBnlwMq/ArcGIS/rest/services/hoabinhquery/FeatureServer/0",
-      "field":["DienTich", "MucDichSuDungDat","SoHieuToBanDo","SoThuTuThuaDat"],
-      "areaField": "DienTich"
+      "field":["SoHieuToBanDo","SoThuTuThuaDat", "DienTich", "MucDichSuDungDat"],
+      "areaField": "DienTich" 
     },  
     "urban": {
       "name": "Thông tin quy hoạch sử dụng đất",
@@ -29,7 +29,6 @@
       "field":["mucDichSuDungQH", "namQuyHoach", "dienTich"],
       "fieldsList": [
         { 
-          "columnkey" : "OBJECTID",
           "fieldname": "SoHieuToBanDo",
           "alias": "Số tờ",
           "fieldtype": "text",
@@ -39,14 +38,13 @@
           "defaultValue": "1"
         },
         { 
-          "columnkey" : "OBJECTID",
           "fieldname": "SoThuTuThuaDat",
           "alias": "Số thửa",
           "fieldtype": "text",
           "isdisplay": "Y",
           "isdisplaygrid": "Y",
           "isreadonly": "N",
-          "defaultValue": "14"
+          "defaultValue": "1678"
 
         }
       ]

@@ -7,8 +7,8 @@ export default {
     Search: 'Search',
     Reset: 'Reset',
     Certificate: 'Certificate of Land',
-    NumberOfPapers: 'Number of papers',
-    NumberOfPlots: 'Number of Plots',
+    NumberOfPapers: 'Number papers',
+    NumberOfPlots: 'Number Plots',
     Coordinates: 'Coordinates',
     Information: 'Information',
     NoteInfomation: 'Note: Search results are for reference only.',
@@ -29,8 +29,8 @@ export default {
     errNoLandInfomation: "No land infomation",
     errNoInformation: "No infomation",
     pleaseEnterInfomation: "Please enter infomation",
-    errNoFunctionCellInformation: "No funtion cell infomation",
-    errNoConstructionPlanningInformation: "No construction planning information",
+    errNoFunctionCellInformation: "This function box not only has the title of planning - architecture",
+    errNoConstructionPlanningInformation: "This function box not only has the title of planning - architecture",
     ProjectInformation : "Project information",
     Note: "Note",
     NoteProject: "This is the planning criterion - the architecture of the function plot, not the criterion of the land area",
@@ -44,17 +44,19 @@ export default {
     Function: "Function",
     NotePrint: "Note: The search results are only valid for information about the land use function. In case of need For more detailed planning information, please contact the Department of Planning and Architecture.",
     ArchitecturePlanningDepartment: "ARCHITECTURE PLANNING DEPARTMENT",
-    FunctionCellInformation: "Function cell information"
+    FunctionCellInformation: "Function cell information",
+    DienTich: "Area",
+    MucDichSuDungDat: "Purpose of using land",
+    SoHieuToBanDo: "Number papers",
+    SoThuTuThuaDat: "Number Plots",
+    MaDuAn: "Project code",
+    TenDuAn: "Project name",
+    TinhTrangPheDuyet: "Approval Status",
+    SoQD: "Decision number",
+    QuyMoDanSo: "Population size",
+    TyLe: "Scale",
+    ChuDauTu: "Investor",
+    DonViQuanLy: "Management unit",
+    NoProjectInfomation: "No project infomation"
 
-
-
-
-
-
-
-
-
-
-
-  
 }

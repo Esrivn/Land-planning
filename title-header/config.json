@@ -1,0 +1,10 @@
+{
+  "text": "<p></p>",
+  "titleVI": "Tiêu đề",
+  "titleEN": "Title",
+  "placeholder": "Double click to edit text",
+  "style": {
+    "verticalAlign": "start",
+    "wrap": true
+  }
+}

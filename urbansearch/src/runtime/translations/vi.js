@@ -29,8 +29,8 @@ define({
     errNoLandInfomation: "Không có thông tin thửa đất",
     errNoInformation: "Không có thông tin",
     pleaseEnterInfomation: "Vui lòng nhập thông tin",
-    errNoFunctionCellInformation: "Không có thông tin ô chức năng",
-    errNoConstructionPlanningInformation: "Không có thông tin quy hoạch xây dựng",
+    errNoFunctionCellInformation: "Ô chức năng này không có chỉ tiêu quy hoạch - kiến trúc",
+    errNoConstructionPlanningInformation: "Ô chức năng này không có chỉ tiêu quy hoạch - kiến trúc",
     ProjectInformation : "Thông tin đồ án",
     Note: "Lưu ý",
     NoteProject: "Đây là chỉ tiêu quy hoạch - kiến trúc của ô chức năng, không phải chỉ tiêu của khu đất",
@@ -44,7 +44,18 @@ define({
     Function: "Chức năng",
     NotePrint: "Lưu ý: Kết quả tra cứu chỉ có giá trị tham khảo thông tin về chức năng sử dụng đất. Trong trường hợp cần cung cấp thông tin quy hoạch chi tiết hơn, đề nghị ông/bà liên hệ Sở Quy hoạch - Kiến trúc.",
     ArchitecturePlanningDepartment: "SỞ QUY HOẠCH - KIẾN TRÚC",
-    FunctionCellInformation: "Thông tin ô chức năng"
-
-    
+    FunctionCellInformation: "Thông tin ô chức năng",
+    DienTich: "Diện tích",
+    MucDichSuDungDat: "Mục đích sử dụng đất",
+    SoHieuToBanDo: "Số tờ",
+    SoThuTuThuaDat: "Số thửa",
+    MaDuAn: "Mã dự án",
+    TenDuAn: "Tên dự án",
+    TinhTrangPheDuyet: "Tình trạng phê duyệt",
+    SoQD: "Số quyết định",
+    QuyMoDanSo: "Quy mô dân số",
+    TyLe: "Tỷ lệ",
+    ChuDauTu: "Chủ đầu tư",
+    DonViQuanLy: "Đơn vị quản lý",
+    NoProjectInfomation: "Không có thông tin đồ án"
 });

@@ -58,6 +58,7 @@ import pin_17 from '../assets/drawable-mdpi/pin_17.png';
 import pin_18 from '../assets/drawable-mdpi/pin_18.png';
 import pin_19 from '../assets/drawable-mdpi/pin_19.png';
 import pin_20 from '../assets/drawable-mdpi/pin_20.png'
+import geometry from 'esri/geometry';
 
 let quyHoachXayDung:any = '';
 let project:any = '';
@@ -305,7 +306,8 @@ function Widget(props: AllWidgetProps<any>) {
   }
 
   const onIdentify = async (mapPoint, geometryType, spatialRel, isClearGrapLocator?: boolean) => {
-    isClearGrapLocator ? clearGraphic('graph_locator', jimuMapView) : ''
+    isClearGrapLocator ? clearGraphic('graph_locator', jimuMapView) : '';
+    clearGraphic('layer_line', jimuMapView)
     jimuMapView.view.graphics.removeAll();
     setIsPacel(false);
     setArrFieldList([]);
@@ -326,7 +328,7 @@ function Widget(props: AllWidgetProps<any>) {
       console.log(res);
       if (res.features.length > 0) {
         setShowResults(true);
-        setShowResultsPacel(true)
+        setShowResultsPacel(true);
         setShowResultsPacelPacel(true);
         const results = res.features[0];
         const attribute = res.features[0].attributes;
@@ -338,7 +340,7 @@ function Widget(props: AllWidgetProps<any>) {
         }
         setInfoPacel(results);
         setIsPacel(true);
-        hightLightPolyGon(results.geometry.rings);
+        hightLightPolyGon(results.geometry.rings, false, false, 5);
         res.fields.forEach(element => {
           const f = cadastral.field.filter(fill => fill === element.name);
           if (f[0]) {
@@ -368,10 +370,9 @@ function Widget(props: AllWidgetProps<any>) {
           arrValue: arrValue
         }
         setArrFieldList(arrValue);
-        onIdentifyQH(results.geometry)
-
+        onIdentifyQH(results.geometry);
         // onIdentifyUrban(info); 
-        queryProject(results)
+        queryProject(results);
       } else {
         messagesAppRef.current.getMessages('info', nls('errNoLandInfomation'));
       }
@@ -777,7 +778,7 @@ function Widget(props: AllWidgetProps<any>) {
     return url  
   }
 
-  const hightLightPolyGon = async (rings, zoom?, isClear?) => {
+  const hightLightPolyGon = async (rings, zoom?, isClear?, expand?) => {
     isClear ? jimuMapView.view.graphics.removeAll() : '';
     const [Graphic, Polygon] = await loadArcGISJSAPIModules([
       'esri/Graphic',
@@ -800,6 +801,12 @@ function Widget(props: AllWidgetProps<any>) {
         duration: 1000
       });
     }
+    if (expand) {
+      jimuMapView.view.extent = polygon.extent.expand(expand);
+      
+    }
+
+
    
     let polylineSymbol = {
       type: "simple-line",
@@ -1036,7 +1043,7 @@ function Widget(props: AllWidgetProps<any>) {
     let val = row.areaField ? <div className='result'> {value[row.name].toFixed(2)} (m<sup>2</sup>)</div> : <div className='result'> {value[row.name]}</div>
     return ((
       <div className='row-result'>
-        <div className='lab'>{upperCase(row.alias)}</div>
+        <div className='lab'>{ nls(row.name) ?  nls(row.name) : row.alias}</div>
         {val}
       </div>
     ))
@@ -1054,13 +1061,15 @@ function Widget(props: AllWidgetProps<any>) {
     let arrValue = [];
     clearGraphic('layer_line', jimuMapView);
     addGraphicSampleLine(polygon, { LAYER_ID: 'layer_line', SPATIAL_REFERENCE: 102100 }, jimuMapView)
-    jimuMapView.view.goTo({
-      target: polygon,
-      zoom: 19
-    }, {
-      animate: true,
-      duration: 1000
-    });
+
+
+    // jimuMapView.view.goTo({
+    //   target: polygon,
+    //   zoom: 20
+    // }, {
+    //   animate: true,
+    //   duration: 1000
+    // });
 
     if (quyHoachXayDung.url && quyHoachXayDung.url !== "") {
       setDisplay(true);
@@ -1110,26 +1119,26 @@ function Widget(props: AllWidgetProps<any>) {
           <label htmlFor="">{row.index + 1}</label>
         </div>
         <div className='wp-info-pacel'>
-          <div className="wp-field-pacel">
+          {/* <div className="wp-field-pacel">
             <div className='field-pacel'>{nls("LandUseFunction")}</div>
             <div className='field-pacel'>{nls("Area")}</div>
           </div>
           <div className="wp-value-pacel">
             <div className='value-pacel'>{row.typeLandDescr}</div>
             <div className='value-pacel'>{row.area.toFixed(2)} (m<sup>2</sup>)</div>
-          </div>
+          </div> */}
 
-          {/* <div className='info-pacel'> */}
+          <div className='info-pacel'>
           {/* <div className='field-pacel'>Chức năng sử dụng đất</div> */}
-          {/* <div className="row_pacel">
-              <div className='field-pacel'>Chức năng sử dụng đất</div>
-              <div className='value-field'>Đất giao thông</div>
+          <div className="row_pacel">
+              <div className='field-pacel'>{nls('LandUseFunction')}</div>
+              <div className='value-field'>{row.typeLandDescr}</div>
             </div>
             <div className="row_pacel">
-              <div className='field-pacel'>Diện tích</div>
-              <div className='value-field'>5.5575,21 </div>
-            </div> */}
-          {/* </div> */}
+              <div className='field-pacel'>{nls('Area')}</div>
+              <div className='value-field'>{row.area.toFixed(2)} (m<sup>2</sup>)</div>
+            </div>
+          </div>
 
         </div>
       </div>
@@ -1405,8 +1414,8 @@ function Widget(props: AllWidgetProps<any>) {
       dataUrbanPacel.forEach((item, index) => {
         htmlData = htmlData + `<tr>`;
         htmlData = htmlData + `<td style='border: 2px solid black; padding: 5px; text-align:center'> ${item.index + 1 }</td> `;
-        htmlData = htmlData + `<td style='border: 2px solid black; padding: 5px;'> ${item.typeLandDescr} </td> `;
-        htmlData = htmlData + ` <td style='border: 2px solid black; padding: 5px;'> ${item.area.toFixed(2)} </td> `;
+        htmlData = htmlData + `<td style='border: 2px solid black; padding: 5px; text-align:center'> ${item.typeLandDescr} </td> `;
+        htmlData = htmlData + ` <td style='border: 2px solid black; padding: 5px; text-align:center'> ${item.area.toFixed(2)} </td> `;
         htmlData  = htmlData+ ` </tr> `;
       });
      
@@ -1439,9 +1448,9 @@ function Widget(props: AllWidgetProps<any>) {
           <table style="border: 2px solid black; border-collapse: collapse;width: 100%">
               <thead>
                   <tr>
-                      <th style="border: 2px solid black; font-weight: bold;text-align: center; padding:5px">${nls('CardinalNumbers')}</th>
+                      <th style="border: 2px solid black; font-weight: bold;text-align: center; padding:5px; width: 200px">${nls('CardinalNumbers')}</th>
                       <th style="border: 2px solid black; font-weight: bold;text-align: center;padding:5px">${nls('Function')}</th>
-                      <th style="border: 2px solid black; font-weight: bold;text-align: center; padding:5px">${nls('Area')} (m<sup>2</sup>)</th>
+                      <th style="border: 2px solid black; font-weight: bold;text-align: center; padding:5px; width: 400px ">${nls('Area')} (m<sup>2</sup>)</th>
                   </tr>
               </thead>
               <tbody>
@@ -1456,50 +1465,6 @@ function Widget(props: AllWidgetProps<any>) {
     }, err => {
       setDisplay(false)
     });
-   
-    // const polygon = new Polygon({
-    //   hasZ: true,
-    //   hasM: true,
-    //   rings: infoPacel.geometry.rings,
-    //   spatialReference: { wkid: 102100 }
-    // })
-    
-
-    // const extent =  polygon.extent.expand(1.5);
-    // const valBbox = extent.xmin + ',' + extent.ymin + ',' + extent.xmax + ',' + extent.ymax;
-
-    // console.log(extent);
-    console.log(infoPacel);
-    // const param = {
-    //   size: "320,320",
-    //   dpi: 96,
-    //   transparent: true,
-    //   format: 'png8',
-    //   bbox: valBbox,
-    //   bboxSR: 102100,
-    //   layers: "show:2",
-    //   imageSR: 102100,
-    //   f: 'json',
-    //   layerDefs: JSON.stringify({ 2: 'OBJECTID = ' + infoPacel.attributes.OBJECTID })
-    // }
-    // jimuMapView.view.map.layers.forEach( item => {
-    //   console.log('layer >>>>>',item.title + item.type, item);
-    // });
-
-    // jimuMapView.view.graphicLayers.forEach( item => {
-    //   console.log('layer graphic >>>>>',item.title + item.type ,item);
-    // });
-
-
-    // esriRequest('https://gisun.esrivn.net/server/rest/services/QuyHoachXD/ThonTinDoAn/MapServer/export', param, 'GET', res => {
-    //   console.log(res);
-    //   if (res.href) {
-    //     window.open(res.href, "_bank")
-    //   }
-    // }, err => {
-    //   console.log(err);
-
-    // });
 
   }
 
@@ -1632,7 +1597,6 @@ function Widget(props: AllWidgetProps<any>) {
     formRef.current.onClearResult();
   }
 
-
   const upperCase = (string)  => {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -1692,29 +1656,11 @@ function Widget(props: AllWidgetProps<any>) {
               <TabPanel header= {nls('Certificate')}>
                 <div className='wp-pare-land'>
                   <CoreForm isLabelBorder ={true} ref={formRef} fieldConfig={fieldConfig}  information={information} layoutConfig={layOutConfig}  isLabelLeft={false} tabId={4} ></CoreForm>
-                  {/* <div className='class-pare-land'>
-                    <div className="class-pieces">
-                      <label htmlFor="">Số tờ </label>
-                      <InputText className='p-inputtext-sm block mb-2' value={piecesPaper} onChange={(e) => setPiecesPaper(e.target.value)}></InputText>
-                    </div>
-                    <div className="class-number-plot">
-                      <label htmlFor="">Số thửa </label>
-                      <InputText value={numberPlots} onChange={(e) => setNumberPlots(e.target.value)}></InputText>
-                    </div>
-
-                  </div> */}
-
                   <div className='btn-submit'>
                     <div className='btn'>
                         <Button icon="pi pi-refresh" label=  {nls('Reset')} className="p-button-raised p-button-success" onClick={onClickResetParcal} />
                         <Button icon="pi pi-search" label= {nls('Search')} className="p-button-raised p-button-info button-print" onClick={onSearchParcel} />
                       </div>
-                    {/* <div className='btn btn-reset' onClick={onClickResetParcal}>
-                      <label htmlFor="">Reset</label>
-                    </div>
-                    <div className='btn btn-search' onClick={onSearchParcel}>
-                      <label htmlFor="">Tìm kiếm</label>
-                    </div> */}
                   </div>
                 </div>
               </TabPanel>
@@ -1778,7 +1724,7 @@ function Widget(props: AllWidgetProps<any>) {
             <label className='title-result'>{nls('PlanningInformation')}</label>
             <div className='wp-project'>
               <label>{nls('Project')}</label>
-              <div className='name-project' onClick={onClickDetailProject}>{dataProject !== null  && dataProject.features.length > 0 ? dataProject.features[dataProject.features.length - 1].attributes.TenDuAn : ''}</div>
+              <div className={ dataProject !== null ? 'name-project' : 'no-name-project'} onClick={ dataProject !== null ? onClickDetailProject : () =>{}}>{ dataProject !== null?  dataProject.features[dataProject.features.length - 1].attributes.TenDuAn : nls('NoProjectInfomation')}</div>
             </div>
             <label className='title-detal-pacel'>{nls('DetailLand')}</label>
             <div className="wp-list-urban-pacel">

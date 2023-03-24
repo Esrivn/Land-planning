@@ -512,6 +512,10 @@
                             cursor: pointer;
                         }
                     }
+                    .no-name-project{
+                        width: 50%;
+                        color: black;
+                    }
                 }
                 .title-detal-pacel{
                     padding: 7px 78px;
@@ -552,6 +556,7 @@
                                 //     flex-direction: column;
                                 //     margin: 10px;
                                 //     font-weight: 600;
+
                                 //     .field-pacel{
                                 //         margin-bottom: 10px;
                                 //     }
@@ -573,9 +578,11 @@
                                     margin-bottom: 10px;
                                     .field-pacel{
                                         font-weight: 600;
+                                        width: 50%;
                                     }
                                     .value-field{
                                         margin-left: 10px;
+                                        width: 50%;
                                     }
                                 }
                                

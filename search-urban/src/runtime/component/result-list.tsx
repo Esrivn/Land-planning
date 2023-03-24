@@ -62,7 +62,6 @@ const ResultList = (props: ResultListProps) => {
       handleClickHide();
       if (record.length > 0) {
         console.log('record', record[0]);
-        let geo = record[0].feature.geometry;
         let feature = record[0].feature;
         // const div = <RenderTemplateAttributes handleClickHide={handleClickHide} results={feature}  />;
         // let _divTemp = document.createElement('div');
@@ -78,7 +77,7 @@ const ResultList = (props: ResultListProps) => {
         // _divTemp.style.height = '100vh';
         // ReactDOM.render(div, _divTemp);
         // jimuMapView.view.ui.add(_divTemp, 'top-right');
-
+ 
 
         jimuMapView.view.graphics.removeAll();
         const [Graphic] = await loadArcGISJSAPIModules(['esri/Graphic'])
@@ -89,11 +88,23 @@ const ResultList = (props: ResultListProps) => {
           animate: true,
           duration: 1000
         });
+
+        // jimuMapView.view.extent = feature.geometry.extent.expand(2)
+
         
+        // let symbol: any = {
+        //   type: "simple-line",
+        //   color: [0 , 0, 255],
+        //   width: 2
+        // };
+
         let symbol: any = {
-          type: "simple-line",
-          color: [0 , 0, 255],
-          width: 2
+          type: "simple-fill",  // autocasts as new SimpleFillSymbol()
+          color: [102, 153, 255, 0.20],
+          outline: { 
+            color: [0 , 0, 255],
+            width: "4px"
+          }
         };
     
         // let symbol: any = {
@@ -104,7 +115,7 @@ const ResultList = (props: ResultListProps) => {
         // };
 
         let graphic = new Graphic({
-          geometry: geo.clone(),
+          geometry: feature.geometry.clone(),
           symbol: symbol
         });
         jimuMapView.view.graphics.add(graphic);

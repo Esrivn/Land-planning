@@ -1,0 +1,1 @@
+define({_widgetLabel:"Tiêu đề đầu trang",defaultPlaceholder:"Nhấp đúp chuột để chỉnh sửa văn bản"});
