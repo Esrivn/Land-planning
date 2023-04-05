@@ -43,7 +43,7 @@ export default {
     CardinalNumbers: "Cardinal numbers",
     Function: "Function",
     NotePrint: "Note: The search results are only valid for information about the land use function. In case of need For more detailed planning information, please contact the Department of Planning and Architecture.",
-    ArchitecturePlanningDepartment: "ARCHITECTURE PLANNING DEPARTMENT",
+    ArchitecturePlanningDepartment: "HOA BINH ARCHITECTURE PLANNING DEPARTMENT",
     FunctionCellInformation: "Function cell information",
     DienTich: "Area",
     MucDichSuDungDat: "Purpose of using land",

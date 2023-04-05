@@ -31,8 +31,14 @@
                     display: flex;
                     justify-content: space-between;
                     flex-direction: column;
+                    position: relative;
                     .list-result{
                         border: 1px solid;
+                        position: absolute;
+                        width: 100%;
+                        top: 92px;
+                        z-index: 1;
+                        background-color: #fff;
                         .hidden{
                             display: none;
                         }

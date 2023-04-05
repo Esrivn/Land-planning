@@ -1424,7 +1424,7 @@ function Widget(props: AllWidgetProps<any>) {
       <div style='width: 100%'>
           <div style='width: 50%; float: left;'>
               <center>
-                  <h4>${ titlePagePrint + ' ' + nls('ArchitecturePlanningDepartment')}</h4>
+                  <h4>${nls('ArchitecturePlanningDepartment')}</h4>
               </center>
           </div>
           <div style='width: 50%; float: right;'>

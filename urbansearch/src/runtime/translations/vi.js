@@ -43,7 +43,7 @@ define({
     CardinalNumbers: "STT",
     Function: "Chức năng",
     NotePrint: "Lưu ý: Kết quả tra cứu chỉ có giá trị tham khảo thông tin về chức năng sử dụng đất. Trong trường hợp cần cung cấp thông tin quy hoạch chi tiết hơn, đề nghị ông/bà liên hệ Sở Quy hoạch - Kiến trúc.",
-    ArchitecturePlanningDepartment: "SỞ QUY HOẠCH - KIẾN TRÚC",
+    ArchitecturePlanningDepartment: "SỞ QUY HOẠCH - KIẾN TRÚC TP HÒA BÌNH",
     FunctionCellInformation: "Thông tin ô chức năng",
     DienTich: "Diện tích",
     MucDichSuDungDat: "Mục đích sử dụng đất",
