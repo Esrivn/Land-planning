@@ -2,5 +2,5 @@
 cd project
 npm i
 
-## Document setup
+## Document
 Tài liệu hướng dẫn cài đặt, cấu hình ứng dụng trong thư mục Document
