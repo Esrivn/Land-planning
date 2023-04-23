@@ -1,7 +1,14 @@
 import { AllWidgetProps, React } from 'jimu-core';
 import { Toast } from 'primereact/toast';
 import './CoreMessage.scss'
+import { hooks } from 'jimu-ui';
+import defaultMessages from '../../urbansearch/src/runtime/translations/default'; 
+
 const {useRef, forwardRef, useImperativeHandle} = React;
+const messagesAppRef: React.MutableRefObject<any> = useRef();
+const nls = hooks.useTranslate(defaultMessages);
+
+
 
 interface ObjectMesaages {
     type: string,
@@ -21,7 +28,7 @@ const CoreMessage=(props, ref) => {
         },
         {
             severity: "warn",
-            summary: "Cảnh báo"
+            summary: nls("Warning")
         },
         {
             severity: "error",

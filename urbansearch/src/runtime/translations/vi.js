@@ -57,5 +57,6 @@ define({
     TyLe: "Tỷ lệ",
     ChuDauTu: "Chủ đầu tư",
     DonViQuanLy: "Đơn vị quản lý",
-    NoProjectInfomation: "Không có thông tin đồ án"
+    NoProjectInfomation: "Không có thông tin đồ án",
+    Warning: "Cảnh báo"
 });

@@ -57,6 +57,7 @@ export default {
     TyLe: "Scale",
     ChuDauTu: "Investor",
     DonViQuanLy: "Management unit",
-    NoProjectInfomation: "No project infomation"
+    NoProjectInfomation: "No project infomation",
+    Warning: "Warning"
 
 }
