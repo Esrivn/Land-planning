@@ -5,8 +5,7 @@ import { hooks } from 'jimu-ui';
 import defaultMessages from '../../urbansearch/src/runtime/translations/default'; 
 
 const {useRef, forwardRef, useImperativeHandle} = React;
-const messagesAppRef: React.MutableRefObject<any> = useRef();
-const nls = hooks.useTranslate(defaultMessages);
+
 
 
 
@@ -16,6 +15,8 @@ interface ObjectMesaages {
 }
 
 const CoreMessage=(props, ref) => {
+    const messagesAppRef: React.MutableRefObject<any> = useRef();
+    const nls = hooks.useTranslate(defaultMessages);
     const toastMessages: React.MutableRefObject<any> = useRef()
     const arrMessages = [
         {
