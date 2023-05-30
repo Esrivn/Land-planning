@@ -1,5 +1,5 @@
 export default {
-  _widgetLabel: 'Indoor search',
+  _widgetLabel: 'Tìm kiếm đồ án quy hoạch',
   showResult: 'Show search results for {searchText}',
   hideResult: 'Hide search results for {searchText}',
   allSearchSources: 'All search sources',
