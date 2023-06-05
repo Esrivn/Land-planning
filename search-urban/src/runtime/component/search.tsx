@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import {
   React, css, ReactRedux, IMState, jsx, polished, Immutable, ImmutableArray, LinkResult, LinkTo, DataSourceStatus, QueriableDataSource, lodash,
-  AppMode, RecordSetChangeType, MessageManager, DataRecordsSelectionChangeMessage, DataSourceFilterChangeMessage
+  AppMode, RecordSetChangeType, MessageManager, DataRecordsSelectionChangeMessage, DataSourceFilterChangeMessage, AllWidgetProps
 } from 'jimu-core'
 import { TextInput, Button, hooks, Link, LinkTarget, defaultMessages as jimuiDefaultMessage } from 'jimu-ui'
 import { IMConfig, Suggestion, SearchResultView, ServiceList, InitResultServiceListOption, NewDatasourceConfigItem, ArrangementStyle, SearchServiceType } from '../../config'
@@ -27,6 +27,7 @@ interface SearchSettingProps {
   isWidgetInCurrentPage: boolean
   onShowSearchInputChange: (isShow: boolean) => void
   jimuMapView: any
+  propsAll: AllWidgetProps<IMConfig>
 }
 
 const SearchInput = (props: SearchSettingProps) => {
@@ -665,6 +666,7 @@ const SearchInput = (props: SearchSettingProps) => {
           isOpentResultListDefault={isOpentResultListDefault}
           handleDsIdOfSelectedResultItemChange={handleDsIdOfSelectedResultItemChange}
           jimuMapView={jimuMapView}
+          propsAll={props.propsAll}
         />}
       </div>
       <Button className='search-button h-100' type='primary' icon onClick={() => { onSearchButtonClick(searchValue) }} title={nls('SearchLabel')}>

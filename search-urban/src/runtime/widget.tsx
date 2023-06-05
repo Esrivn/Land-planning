@@ -128,6 +128,7 @@ const activeViewChangeHandler = (jmv: JimuMapView) => {
                       isInCurrentView={isSearchInCurrentView}
                       isWidgetInCurrentPage={isWidgetInCurrentPage}
                       jimuMapView={jimuMapView}
+                      propsAll={props}
                     />}
                     <CreateDatasource
                       id={id}

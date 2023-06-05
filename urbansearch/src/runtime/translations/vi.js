@@ -58,5 +58,10 @@ define({
     ChuDauTu: "Chủ đầu tư",
     DonViQuanLy: "Đơn vị quản lý",
     NoProjectInfomation: "Không có thông tin đồ án",
-    Warning: "Cảnh báo"
+    Warning: "Cảnh báo",
+    tenVungQuyHoach: "Tên vùng quy hoạch",
+    mucDichSuDungQH: "Mục đích sử dụng quy hoạch",
+    namQuyHoach:"Năm quy hoạch",
+    dienTich: "Diện tích (m2)",
+    thongTinQuyHoachSDD: "Thông tin quy hoạch sử dụng đất"
 });

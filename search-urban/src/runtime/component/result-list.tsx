@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { React, ReactRedux, jsx, QueriableDataSource, classNames, DataRecord, Immutable, ImmutableObject, MessageManager, DataRecordsSelectionChangeMessage } from 'jimu-core'
+import { React, ReactRedux, jsx, QueriableDataSource, classNames, DataRecord, Immutable, ImmutableObject, MessageManager, DataRecordsSelectionChangeMessage, AllWidgetProps, appActions } from 'jimu-core'
 import { hooks, Icon, Dropdown, DropdownMenu, DropdownItem, DropdownButton } from 'jimu-ui'
 import { IMConfig, IMServiceList, SearchServiceType } from '../../config'
 import defaultMessage from '../translations/default'
@@ -13,6 +13,7 @@ import Graphic from 'esri/Graphic'
 import ReactDOM from 'react-dom'
 // import RenderTemplateAttributes from "../../../../components/RenderTemplateAttributes";
 import _location from "../../images/location.png";
+import { getAppConfigAction } from 'jimu-for-builder'
 
 const { useSelector, useDispatch } = ReactRedux;
 const { useState, useEffect, useLayoutEffect, useRef, Fragment } = React;
@@ -52,10 +53,11 @@ interface ResultListProps {
   setResultFirstItem: (ref) => void
   handleDsIdOfSelectedResultItemChange: (dsId: string) => void
   jimuMapView: any
+  propsAll: AllWidgetProps<IMConfig>
 }
 
 const ResultList = (props: ResultListProps) => {
-  const { reference, searchText, id, config, serviceList, isOpentResultListDefault, setResultFirstItem, handleDsIdOfSelectedResultItemChange, jimuMapView} = props
+  const { reference, searchText, id, config, serviceList, isOpentResultListDefault, setResultFirstItem, handleDsIdOfSelectedResultItemChange, jimuMapView, propsAll} = props
   // ===============SonPA 
    // Custom result search - SonPA
     const handleProccessResultSearch = async (record) => {
@@ -119,6 +121,32 @@ const ResultList = (props: ResultListProps) => {
           symbol: symbol
         });
         jimuMapView.view.graphics.add(graphic);
+        const appConfigAction = getAppConfigAction().appConfig.widgets
+        console.log(appConfigAction);
+        let widgetId = '';
+        let entries  = Object.keys(appConfigAction)
+        let data = entries.map((key, val) => {
+          if ( appConfigAction[key].uri === 'widgets/urban/urbansearch/') {
+            widgetId = appConfigAction[key].id
+          }
+        })
+
+        // const widgetId = appConfigAction.appConfig.widgets.find(f => f.uri)
+
+        let arrField = []
+        feature.layer.fields.forEach((item:any) => {
+          arrField.push({name: item.name})
+        })
+        console.log(feature.layer.fields);
+
+        const value = {
+          attributes: feature.attributes,
+          geometry: {x: feature.geometry.extent.center.x, y: feature.geometry.extent.center.y},
+          fields: arrField
+        }
+        propsAll.dispatch(appActions.widgetStatePropChange(
+          widgetId, "data", value))
+
       }
     }
 

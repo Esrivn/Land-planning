@@ -65,6 +65,7 @@ let project:any = '';
 let cadastral:any = '';
 let scale:any = '';
 let urban:any = '';
+let arrValueUrban = []
 function Widget(props: AllWidgetProps<any>) {
   const [display, setDisplay] = useState(false);
   const [cboDistrict, setcboDistrict] = useState(null);
@@ -109,6 +110,7 @@ function Widget(props: AllWidgetProps<any>) {
   const [dataUrbanPacel, setDataUrbanPacel] = useState([]);
   const [isPacel, setIsPacel] = useState(false);
   const [information, setinformation] = useState(null);
+  // const [arrValueUrban, setArrValueUrban] = useState([]);
   const messagesAppRef: React.MutableRefObject<any> = useRef();
 
   const formRef = useRef() as any;
@@ -124,14 +126,33 @@ function Widget(props: AllWidgetProps<any>) {
 
   }, [])
 
+  useEffect( () => {
+    let  attribute =  null
+    if (props.stateProps) {
+      attribute = props.stateProps.data
+      queryProjectWhenClickMap(attribute.geometry, true)
+
+      // setDataProject(attribute)
+      // onClickDetailProject(attribute) 
+      // setShowResultsPacelPlanning(true)
+    }
+
+    
+  }, [props.stateProps])
+
   useLayoutEffect(() => {
     if (jimuMapView) {
       setView(jimuMapView.view);
       const _view: MapView = jimuMapView.view;
       _view.on('click', res => {
-        onIdentifyUrban(res.mapPoint); 
-
+        const toolDistanceMeasurement2D = jimuMapView.jimuMapTools.find((f) => f.name === 'DistanceMeasurement2D')
+        if (!toolDistanceMeasurement2D || !toolDistanceMeasurement2D.instance.active) {
+          console.log('evt', res)
+          onIdentifyUrban(res.mapPoint); 
+        }
       });
+
+    
       onloadMap();
     }
   }, [jimuMapView])
@@ -387,6 +408,7 @@ function Widget(props: AllWidgetProps<any>) {
     setShowResultsPacelPacel(false)
     setArrFieldListPlanning([])
     let arrValue = [];
+    arrValueUrban = []
     const scaleMap = jimuMapView.view.scale;
     let arrSale = [];
     Object.keys(scale).forEach(key => {
@@ -417,8 +439,9 @@ function Widget(props: AllWidgetProps<any>) {
     console.log("value scale", arrTG);
 
     let arrConfigLayer:any = [];
-    scaleConfig !== null ? arrConfigLayer = scale[scaleConfig] : '';
-    if (arrConfigLayer.isPacel) {
+    if (scaleConfig !== null) {
+      arrConfigLayer = scale[scaleConfig]
+      if (arrConfigLayer.isPacel) {
         onIdentify(mapPoint, 'esriGeometryPoint', 'esriSpatialRelIntersects', true);
     } else {
       let arrUrlMap = [];
@@ -465,8 +488,8 @@ function Widget(props: AllWidgetProps<any>) {
                 }
               });
             }
-            
-            arrValue.push({
+            // let arr = []
+            arrValueUrban.push({
               value: value,
               field: res.data.fields,
               title: title,
@@ -476,10 +499,99 @@ function Widget(props: AllWidgetProps<any>) {
             hightLightPolyGon(value.geometry.rings);
           }
         });
-        setArrFieldListPlanning(arrValue);
+        // setArrValueUrban(arrValue)
+        setArrFieldListPlanning(arrValueUrban);
+        queryProjectWhenClickMap(param)
       }   
     
     }
+    } else {
+      messagesAppRef.current.getMessages('info', 'Zoom lớn hơn để chọn đối tượng');
+
+    }
+   
+  }
+
+  const queryProjectWhenClickMap = async (param, isSearchDA: boolean = false) =>{
+    const [
+      Graphic, Polygon, Point, GraphicsLayer
+    ] = await loadArcGISJSAPIModules([
+      'esri/Graphic',
+      'esri/geometry/Polygon',
+      'esri/geometry/Point',
+      'esri/layers/GraphicsLayer'
+    ]);
+    let geo = null
+    if (isSearchDA) {
+      arrValueUrban = []
+      const point = new Point({
+        x: param.x,
+        y: param.y,
+        spatialReference: { wkid: 32648 }
+      })
+      geo = point
+    } else 
+      geo = param.geometry
+    queryData(project.url + '/query', geo, 'esriGeometryPoint', 'esriSpatialRelIntersects', async res => {
+      if (res.features.length > 0) {
+        if (isSearchDA) {
+          setShowResults(true);
+          setShowResultsPacel(true);
+          setShowResultsPacelPlanning(true);
+          setShowResultsPacelPacel(false);
+          setShowResultsDetal(false)
+
+          arrValueUrban = []
+        }
+        const value = res.features[0];
+        if (project.domain) {
+          const arrFielDomain = project.domain.fields;
+          const arrDomainName = project.domain.domainName;  
+          let obj = {};
+
+          // let arrDomain = project.domain.domainName;
+          arrFielDomain.forEach(item => {
+            const f =  arrDomainName.filter(fill => fill.field === item);
+            if (f[0]) {
+              obj[item] = f[0].codedValues
+            }
+          });
+
+          res.fields.forEach(element => {
+            const f = project.field.filter(fill => fill === element.name);
+            if (f[0]) {
+              element.isShow = true;
+            } else {
+              element.isShow = false;
+            }
+
+            const d = arrDomainName.filter(fill => fill.field === element.name)
+            if (d[0]) {
+              value.attributes[element.name] = d[0].codedValues[value.attributes[element.name]].name
+            }
+
+          });
+
+           
+          let arrValue = []
+          arrValueUrban.push({
+            value: value,
+            field: res.fields,
+            title: "ProjectInformation",
+            color: '#CCC',
+            isUrban: true
+          });
+
+          setArrFieldListPlanning([...arrValueUrban]);
+
+          // res.domain = obj
+         
+        } else {
+        }
+      }
+    }, err => {
+      console.log(err);
+    })
   }
 
   const queryProject = async (results) => {
@@ -1023,7 +1135,7 @@ function Widget(props: AllWidgetProps<any>) {
     return ((
       <div className='wp-result-planning' onClick={() => onCLickPlanning(field)}>
         <div className='ctn-result'>
-          <label className='title-result'>{field.title}</label>
+          <label className='title-result'>{nls(field.title)}</label>
           {field.field.map(fill => renderRow(fill, field.value.attributes))}
         </div>
       </div>
@@ -1032,7 +1144,7 @@ function Widget(props: AllWidgetProps<any>) {
 
   const onCLickPlanning = (field) => {
     console.log(field);
-    hightLightPolyGon(field.value.geometry.rings[0], 14);
+    hightLightPolyGon(field.value.geometry.rings[0], false, true,  4);
     
   }
   
@@ -1147,20 +1259,21 @@ function Widget(props: AllWidgetProps<any>) {
   }
 
 
-  const onClickDetailProject = async () => {
+  const onClickDetailProject = async (data: any) => {
     const [
       Graphic, Polygon
     ] = await loadArcGISJSAPIModules([
       'esri/Graphic',
       'esri/geometry/Polygon'
     ]);
+    setShowResults(true);
     setShowResultsPacel(false)
     setShowResultsDetal(true)
-    let length = dataProject.features.length -1;
-    let valueProject = dataProject.features[length];
+    let length = data.features ? data.features.length -1 : null;
+    let valueProject = length !== null ?  data.features[length] : data
     let attribute = valueProject.attributes;
 
-    dataProject.fields.forEach(element => {
+    data.fields.forEach(element => {
       const f = project.field.filter(fill => fill === element.name);
       if (f[0]) {
         element.isShow = true;
@@ -1168,13 +1281,12 @@ function Widget(props: AllWidgetProps<any>) {
         element.isShow = false;
       }
       
-      if (dataProject.domain) {
-        Object.keys(dataProject.domain).forEach((item:any) => {
+      if (data.domain) {
+        Object.keys(data.domain).forEach((item:any) => {
           console.log(item);
             if (item === element.name) {
-            attribute[element.name] = dataProject.domain[item][attribute[element.name]].name
+            attribute[element.name] = data.domain[item][attribute[element.name]].name
           }
-          
         });
       }
    });
@@ -1182,10 +1294,11 @@ function Widget(props: AllWidgetProps<any>) {
     let arrValue = [];
     arrValue.push({
       title: nls('ProjectInformation'),
-      field: dataProject.fields,
+      field: data.fields,
       value: attribute,
       isUrban: false
     });
+
     const polygon = new Polygon({
       hasZ: true,
       hasM: true,
@@ -1196,14 +1309,7 @@ function Widget(props: AllWidgetProps<any>) {
     setArrFieldListDetail(arrValue)
     addGraphicFill(polygon, { LAYER_ID: 'layer_fill', SPATIAL_REFERENCE: 102100 }, jimuMapView);
     jimuMapView.view.extent = polygon.extent
-    console.log(jimuMapView.view.map);
-    
-
-    // this.gisService.clearGraphic('layer_buffer', this.map);
-
-    // hightLightFillPolyGon(valueProject.geometry.rings, 16)
-
-    console.log(dataProject);
+    console.log(data);
   }
 
   const onSearchLocator = async () => {
@@ -1721,26 +1827,26 @@ function Widget(props: AllWidgetProps<any>) {
               }
             </div>
             <div className='wp-result-urban'>
-            <label className='title-result'>{nls('PlanningInformation')}</label>
-            <div className='wp-project'>
-              <label>{nls('Project')}</label>
-              <div className={ dataProject !== null ? 'name-project' : 'no-name-project'} onClick={ dataProject !== null ? onClickDetailProject : () =>{}}>{ dataProject !== null?  dataProject.features[dataProject.features.length - 1].attributes.TenDuAn : nls('NoProjectInfomation')}</div>
-            </div>
-            <label className='title-detal-pacel'>{nls('DetailLand')}</label>
-            <div className="wp-list-urban-pacel">
-              <div className='list-urban-pacel'>
-                {
-                  dataUrbanPacel.length > 0 ? dataUrbanPacel.map(row => renderViewUrbanPacel(row)) : ''
-                }
+              <label className='title-result'>{nls('PlanningInformation')}</label>
+              <div className='wp-project'>
+                <label>{nls('Project')}</label>
+                <div className={ dataProject !== null ? 'name-project' : 'no-name-project'} onClick={(e:any) =>  dataProject !== null ? onClickDetailProject(dataProject) : () =>{}}>{ dataProject !== null?  dataProject.features[dataProject.features.length - 1].attributes.TenDuAn : nls('NoProjectInfomation')}</div>
+              </div>
+              <label className='title-detal-pacel'>{nls('DetailLand')}</label>
+              <div className="wp-list-urban-pacel">
+                <div className='list-urban-pacel'>
+                  {
+                    dataUrbanPacel.length > 0 ? dataUrbanPacel.map(row => renderViewUrbanPacel(row)) : ''
+                  }
+                </div>
+              </div>
+              <div className="div-button">
+                <div className='btn'>
+                  <Button icon="pi pi-file-excel" label= {nls('ExportCoordinates')} className="p-button-raised p-button-success" onClick={onExport} />
+                  <Button icon="pi pi-print" label= {nls('PrintInformation')} className="p-button-raised p-button-info button-print" onClick={onPrint} />
+                </div>
               </div>
             </div>
-            <div className="div-button">
-              <div className='btn'>
-                <Button icon="pi pi-file-excel" label= {nls('ExportCoordinates')} className="p-button-raised p-button-success" onClick={onExport} />
-                <Button icon="pi pi-print" label= {nls('PrintInformation')} className="p-button-raised p-button-info button-print" onClick={onPrint} />
-              </div>
-            </div>
-          </div>
           </div>
         </div>
         <div className={showResultsDetail ? 'wp-detail-result' : 'hidden'}>

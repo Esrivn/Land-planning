@@ -111,7 +111,19 @@
           "url": "https://services.arcgis.com/EaQ3hSM51DBnlwMq/ArcGIS/rest/services/hoabinhquery/FeatureServer/0",
           "field":["DienTich", "MucDichSuDungDat", "MaPhuongXa", "MaQuanHuyen","SoTo","SoThua"]
         }
-      }
+      },
+      "9000": [{
+          "name": "Thông tin quy hoạch sử dụng đất",
+          "url": "https://services.arcgis.com/EaQ3hSM51DBnlwMq/ArcGIS/rest/services/hoabinhquery/FeatureServer/2",
+          "field":["tenVungQuyHoach", "mucDichSuDungQH", "namQuyHoach", "dienTich"],
+          "color": "#800080"
+      }],
+      "20000": [{
+        "name": "Thông tin quy hoạch sử dụng đất",
+        "url": "https://services.arcgis.com/EaQ3hSM51DBnlwMq/ArcGIS/rest/services/hoabinhquery/FeatureServer/2",
+        "field":["tenVungQuyHoach", "mucDichSuDungQH", "namQuyHoach", "dienTich"],
+        "color": "#800080"
+      }]
     }
   }
 ]}

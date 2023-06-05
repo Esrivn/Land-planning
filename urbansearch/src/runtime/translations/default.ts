@@ -58,6 +58,12 @@ export default {
     ChuDauTu: "Investor",
     DonViQuanLy: "Management unit",
     NoProjectInfomation: "No project infomation",
-    Warning: "Warning"
+    Warning: "Warning",
+    tenVungQuyHoach: "Planning area name",
+    mucDichSuDungQH: "Planning use purposes",
+    namQuyHoach:"Planning year",
+    dienTich: "Acreage",
+    thongTinQuyHoachSDD: "Information on land use planning"
+
 
 }
