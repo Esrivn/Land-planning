@@ -1,4 +1,4 @@
 export default {
-  _widgetLabel: 'Title header',
+  _widgetLabel: 'Tiêu đề',
   defaultPlaceholder: 'Double click to edit text'
 }

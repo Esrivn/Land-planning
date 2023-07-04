@@ -71,10 +71,10 @@ const handleSelectedChangeLan = (e) => {
 }
 
   return (
-    <div className="widget-demo jimu-widget m-2">
+    <div className="widget-languge-multi jimu-widget">
       <div className="card flex justify-content-center">
-            <Dropdown value={selectedLan} onChange={(e) => handleSelectedChangeLan(e)} options={languages} optionLabel="name"
-                valueTemplate={selectedLanTemplate} itemTemplate={countryOptionTemplate} className="w-full md:w-14rem" />
+            <Dropdown className='dropdow-languge-multi' value={selectedLan} onChange={(e) => handleSelectedChangeLan(e)} options={languages} optionLabel="name"
+                valueTemplate={selectedLanTemplate} itemTemplate={countryOptionTemplate} />
         </div>   
     </div>
   )

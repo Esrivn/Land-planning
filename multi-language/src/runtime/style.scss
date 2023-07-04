@@ -1,8 +1,28 @@
-.align-items-center {
+.widget-languge-multi {
     display: flex;
+    justify-content: center;
+    align-items: center;
 
-    .title-language {
-        padding-left: 5px;
-        font-size: 10pt;
+    .align-items-center {
+        display: flex;
+
+        .title-language {
+            padding-left: 5px;
+            font-size: 10pt;
+        }
+    }
+}
+
+.p-dropdown-panel {
+    .p-dropdown-items {
+        .p-dropdown-item {
+            .align-items-center {
+                display: flex !important;
+
+                .title-language {
+                    padding-left: 5px;
+                }
+            }
+        }
     }
 }
