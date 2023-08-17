@@ -24,7 +24,7 @@
       "areaField": "DienTich" 
     },  
     "urban": {
-      "name": "Thông tin quy hoạch sử dụng đất",
+      "name": "Thông tin quy hoạch xây dựng",
       "url": "https://services.arcgis.com/EaQ3hSM51DBnlwMq/ArcGIS/rest/services/hoabinhquery/FeatureServer/2",
       "field":["mucDichSuDungQH", "namQuyHoach", "dienTich"],
       "fieldsList": [
