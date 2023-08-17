@@ -59,8 +59,8 @@ export async function fetchSuggestionRecords (
   const w = `${searchFields[0].name} LIKE N'%${where1}%'`
   //
   if (SQL?.sql || typeof (SQL?.sql) === 'string') {
-    // options.where = SQL?.sql
-    options.where = w
+    options.where = SQL?.sql
+    // options.where = w
 
   }
 
@@ -154,7 +154,7 @@ export const loadDsRecords = (serviceListItem: DatasourceListItem, resultMaxNumb
   searchText = str.substring(start, end + 1);
   const w = `${serviceListItem.searchFields[0].name} LIKE N'%${searchText}%'`
   const query = {
-    where: w,
+    where: str,
     pageSize: resultMaxNumber,
     page: 1,
     returnGeometry: true
